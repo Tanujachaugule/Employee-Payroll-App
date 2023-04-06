@@ -6,8 +6,7 @@
     <link href = "https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
     <link rel = "stylesheet" href= "Payroll_form.css">
     <title>Employee Payroll Form</title>
-    <script defer src="../Js/EmployeePayroll.js"></script>
-    <script defer src="../Js/payroll_form.js"></script>
+    <title>Document</title>
 </head>
 <body>
      <!-- UC1 -->
@@ -20,17 +19,19 @@
             </div>
         </div>
         </header>
-        <div id="formId"  class="form-content">
+        <div class="form-content">
           <form class="form" action="#" onreset="resetForm()" onsubmit="save()">  
-      
+      <div class = "form" action="#" onsubmit="save(event);return false">
           <!-- UC2 -->
       <div class="form-head">Employee Payroll Form</div>
       <div class="row-content">
           <label class="label text" for="name">Name</label> 
           <input class="input" type="text" id="name" name="name" placeholder="your name.." required>
-          <error-output class="text-error" for="text"></error-output>
+          <small id="errormsg"
+              >Enter 1st character in uppercase, min 3 character</small
+            >
       </div>
-      
+      </div>
       <div class="row-content">
         <label class="label text" for="profile">Profile image</label>
         <div class="profile-radio-content">
@@ -162,9 +163,8 @@
         <button type="submit" class="button submitButton" id="submitButton">Submit</button>
         <button type="reset" class="resetButton button">Reset</button>
     </div>
-    </div>
  </form>
  </div>
   </body>
-
-  </html>
+  <script src="Payroll_form.js"></script>
+</html>
