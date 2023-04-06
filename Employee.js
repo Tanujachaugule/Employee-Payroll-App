@@ -19,7 +19,7 @@ username.addEventListener('input', () => {
 salRange.addEventListener('input', () => {
   salary.innerHTML = salRange.value;
 });
-// submit 
+//  submit function save
 function save() {
   const profileImage = document.querySelector('input[name="profile"]:checked');
   const gender = document.querySelector('input[name="gender"]:checked');
@@ -48,7 +48,7 @@ function save() {
       notes.value
   );
 
-  //  localstorage 
+  // localstorage
   if (window.localStorage.key(1) !== null) {
     employeePayrollList = JSON.parse(
       window.localStorage.getItem('employeePayrollData')
