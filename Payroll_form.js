@@ -1,45 +1,68 @@
-const createEmployeePayroll = () => {
-    let employeePayrollData = new EmployeePayrollData();
-    try {
-        employeePayrollData.name = getInputValueById('#name');
-    } catch (e) {
-        setTextValue('.text-error', e);
-        throw e;
-    }
-    employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
-    employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
-    employeePayrollData.department = getSelectedValues('[name=department]');
-    employeePayrollData.salary = getInputValueById('#salary');
-    employeePayrollData.note = getInputValueById('#notes');
-    let date = getInputValueById('#day')+" "+getInputValueById('#month')+" "+
-                getInputValueById('#year');
-    employeePayrollData.startDate =new Date(parseInt(document.getElementById("year").value), parseInt(document.getElementById("month").value) - 1, parseInt(document.getElementById("day").value));
-    alert(employeePayrollData.toString());
-    return employeePayrollData;
+class NewEmployee {
+  id;
+  name;
+  profileImg;
+  gender;
+  department;
+  salary;
+  startDate;
+  notes;
+  get id() {
+    return this.id;
+  }
+  set id(id) {
+    this.id = id;
+  }
+
+  set name(name) {
+    this.name = name;
+  }
+  get name() {
+    return this.name;
+  }
+  get profileImg() {
+    return this.profileImg;
+  }
+
+  set profileImg(profileImg) {
+    this.profileImg = profileImg;
+  }
+
+  get gender() {
+    return this.gender;
+  }
+
+  set gender(gender) {
+    this.gender = gender;
+  }
+
+  get department() {
+    return this.department;
+  }
+
+  set department(department) {
+    this.department = department;
+  }
+  get salary() {
+    return this.salary;
+  }
+  set salary(salary) {
+    this.salary = salary;
+  }
+  get startDate() {
+    return this.startDate;
+  }
+  set startDate(startDate) {
+    this.startDate = startDate;
+  }
+  get notes() {
+    return this.notes;
+  }
+  set notes(notes) {
+    this.notes = notes;
+  }
 }
-
-const getSelectedValues = (propertyValue) => {
-    let allItems = document.querySelectorAll(propertyValue);
-    let selItems = [];
-    allItems.forEach(item => {
-        if(item.checked) selItems.push(item.value);
-    });
-    return selItems;
-}
-
-
-
-const getInputValueById = (id) => {
-    let value = document.querySelector(id).value;
-    return value;
-}
-
-
-const getInputElementValue = (id) => {
-    let value = document.getElementById(id).value;
-    return value;
-}
-
+let newEmployee = new NewEmployee();
 
 const salary = document.querySelector('.salary-output');
 const salRange = document.querySelector('#salary');
@@ -59,57 +82,40 @@ username.addEventListener('input', () => {
     username.style.border = 'none';
   }
 });
-
-
-
 salRange.addEventListener('input', () => {
   salary.innerHTML = salRange.value;
 });
-
-
+function reset() {
+  let str = 40000;
+  document.querySelector('salary-output').innerHTML = str;
+}
+// onform submit function save
 function save() {
-    const profileImage = document.querySelector('input[name="profile"]:checked');
-    const gender = document.querySelector('input[name="gender"]:checked');
-    const checkbox = document.querySelectorAll('input[class="checkbox"]:checked');
-    const day = document.querySelector('#day');
-    const month = document.querySelector('#month');
-    const year = document.querySelector('#year');
-    let startDate = day.value + '-' + month.value + '-' + year.value;
-    checkbox.forEach((dept) => {
-      departmentValues.push(dept.value);
-    });
-  
-    window.alert(
-      username.value +
-        ',' +
-        salRange.value +
-        ',' +
-        profileImage.value +
-        ',' +
-        gender.value +
-        ',' +
-        departmentValues +
-        ',' +
-        startDate +
-        ',' +
-        notes.value
-    );
+  const profileImage = document.querySelector('input[name="profile"]:checked');
+  const gender = document.querySelector('input[name="gender"]:checked');
+  const checkbox = document.querySelectorAll('input[class="checkbox"]:checked');
+  const day = document.querySelector('#day');
+  const month = document.querySelector('#month');
+  const year = document.querySelector('#year');
+  let startDate = day.value + '-' + month.value + '-' + year.value;
+  checkbox.forEach((dept) => {
+    departmentValues.push(dept.value);
+  });
 
-if (window.localStorage.key(1) !== null) {
+  // //Adding data from localstorage to array
+  if (window.localStorage.key(0) !== null) {
     employeePayrollList = JSON.parse(
       window.localStorage.getItem('employeePayrollData')
     );
   }
-
-  let newEmployee = {
-    name: username.value,
-    profileImg: profileImage.value,
-    gender: gender.value,
-    department: departmentValues,
-    salary: salRange.value,
-    startDate: startDate,
-    notes: notes.value,
-  };
+  newEmployee.id = new Date().getDate();
+  newEmployee.name = username.value;
+  newEmployee.profileImg = profileImage.value;
+  newEmployee.gender = gender.value;
+  newEmployee.department = departmentValues;
+  newEmployee.salary = salRange.value;
+  newEmployee.startDate = startDate;
+  newEmployee.notes = notes.value;
 
   employeePayrollList.push(newEmployee);
 
@@ -119,7 +125,6 @@ if (window.localStorage.key(1) !== null) {
     'employeePayrollData',
     JSON.stringify(employeePayrollList)
   );
-
   }
   const resetForm = () => {
     setValue('#name','');
