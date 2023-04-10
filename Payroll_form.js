@@ -7,6 +7,7 @@ class NewEmployee {
   salary;
   startDate;
   notes;
+
   get id() {
     return this.id;
   }
@@ -108,7 +109,7 @@ function save() {
       window.localStorage.getItem('employeePayrollData')
     );
   }
-  newEmployee.id = new Date().getDate();
+  newEmployee.id = Date.now().toString(36);
   newEmployee.name = username.value;
   newEmployee.profileImg = profileImage.value;
   newEmployee.gender = gender.value;
@@ -154,3 +155,9 @@ const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
 }
+
+const setSelectedIndex = (id, index) => {
+  const element = document.querySelector(id);
+  element.selectedIndex = index;
+}
+
