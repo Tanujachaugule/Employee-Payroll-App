@@ -159,17 +159,7 @@ function save() {
 
   // //Adding data from localstorage to array
 
-  employeePayrollList = JSON.parse(
-    window.localStorage.getItem('employeePayrollData')
-  );
-
-  if (employeePayrollList) {
-    let empPayrollData = employeePayrollList.find(
-      (empData) => empData.id == employeePayrollObj.id
-    );
-    if (!empPayrollData) {
-      if (newEmployee.id == null) newEmployee.id = Date.now().toString(36);
-      newEmployee.name = username.value;
+  .name = username.value;
       newEmployee.profileImg = profileImage.value;
       newEmployee.gender = gender.value;
       newEmployee.department = departmentValues;
@@ -184,7 +174,17 @@ function save() {
       employeePayrollList.splice(index1, 1);
       newEmployee.id = empPayrollData.id;
       newEmployee.name = username.value;
-      newEmployee.profileImg = profileImage.value;
+      newEmployee.profileImg employeePayrollList = JSON.parse(
+    window.localStorage.getItem('employeePayrollData')
+  );
+
+  if (employeePayrollList) {
+    let empPayrollData = employeePayrollList.find(
+      (empData) => empData.id == employeePayrollObj.id
+    );
+    if (!empPayrollData) {
+      if (newEmployee.id == null) newEmployee.id = Date.now().toString(36);
+      newEmployee= profileImage.value;
       newEmployee.gender = gender.value;
       newEmployee.department = departmentValues;
       newEmployee.salary = salRange.value;
